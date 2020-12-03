@@ -1,7 +1,16 @@
+body {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.card-body {
+  border: 1px solid black;
+}
+
 .weather-app {
   max-width: 600px;
   margin: 30px auto;
   padding: 20px;
-  border: 1px solid rgb(10, 9, 9);
-  border-radius: 3px;
+  border: 1px solid brown;
+  border-radius: 5px;
 }
+
