@@ -2,8 +2,12 @@ body {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.card-body {
-  border: 1px solid black;
+#todayIcon {
+  font-size: 138px;
+}
+
+.todays-weather {
+  margin: 20px;
 }
 
 .weather-app {
