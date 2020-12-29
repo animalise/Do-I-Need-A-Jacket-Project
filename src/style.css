@@ -1,20 +1,69 @@
-body {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+h1 {
+  font-family: "Satisfy", cursive;
 }
 
-#todayIcon {
-  font-size: 138px;
+body {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin: 20px;
+  background-color: #E7E7DE;
+}
+
+li {
+  list-style: none
 }
 
 .todays-weather {
-  margin: 20px;
+  text-align: center;
 }
 
 .weather-app {
-  max-width: 600px;
+  max-width: 700px;
   margin: 30px auto;
   padding: 20px;
-  border: 1px solid brown;
+  border: 1px solid #158596;
   border-radius: 5px;
+  box-shadow: 2px 2px rgba(23, 134, 150, 0.5)
 }
 
+.card {
+  background-color: #E7E7DE;
+  border: 1px solid rgb(203, 175, 135);
+  box-shadow: 2px 2px rgba(124, 107, 83, 0.5);
+}
+
+.card-group {
+  display: flex;
+}
+
+.card-text {
+  font-size: 18px;
+}
+
+.card-header {
+  font-size: 18px;
+  text-align: center;
+}
+
+#day1 {
+  font-size: 100px;
+}
+
+.fa-sun {
+  color: #ffcd38;
+  font-size: 60px;
+}
+
+.fa-cloud-rain {
+  font-size: 60px;
+  color: #158596;
+}
+
+.fa-cloud-sun {
+  font-size: 60px;
+  color:rgb(203, 175, 135);
+}
+
+.fa-cloud {
+  font-size: 60px;
+  color: rgb(203, 175, 135);
+}
