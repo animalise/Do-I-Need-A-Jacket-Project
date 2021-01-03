@@ -1,21 +1,28 @@
-h1 {
-  font-family: "Satisfy", cursive;
-}
-
 body {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   margin: 20px;
   background-color: #E7E7DE;
 }
 
+h1 {
+  font-family: "Satisfy", cursive;
+}
+
 li {
-  list-style: none
+  list-style: none;
+}
+
+h2 {
+  font-size: 48px;
+  text-align: center;
+  margin: 10px;
+  font-family: "Satisfy", cursive;
 }
 
 .todays-weather {
   text-align: center;
+  
 }
-
 .weather-app {
   max-width: 700px;
   margin: 30px auto;
@@ -72,4 +79,21 @@ li {
   width: 150px;
   height: 40px;
   color: white;
+}
+
+.current-temp {
+  font-size: 40px;
+}
+
+.units {
+  font-size: 18px;
+  position: relative;
+  top: -14px;
+}
+
+.date, .time {
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  bottom: -20px;
 }

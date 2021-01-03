@@ -21,7 +21,7 @@
       <form id="search-form">
         <div class="row">
           <div class="col-5">
-            <input type="search" placeholder="Enter a city..." class="form-control" id="search-input" autofocus="on" autocomplete="off"/>
+            <input type="search" placeholder="Enter a city..." class="form-control" id="searchInput" autofocus="on" autocomplete="off"/>
                 </div>
                 <div class="col-3">
                   <input type="submit" value="Search" class="form-control btn btn-info">
@@ -33,23 +33,24 @@
            </div>
         </form>
         <div class="todays-weather">
-          <h2>CITY NAME</h2>
+          <h2>The Bronx, NY</h2>
           <div class="row">
             <div class="col-4">
           <i class="fas fa-sun" id="day1"></i>
           </div>
           <div class="col-4">
           <ul> 
-            <li class="current-temp">CURRENT TEMP</li>
-            <li  class="current-atmosphere">CURRENT ATMOSPHERE</li>
-            <li class="jacket">JACKET?</li>
+            <li class="current-temp">40
+            <span class="units"><a href="#" id="celsius-link" class="active">°C</a> |
+              <a href="#" id="fahrenheit-link">°F</a></span></li>
+            <li class="current-atmosphere">Sunny -
+            <span class="jacket">bring a jacket!</span></li>
           </ul>
             </div>
             <div class="col-4">
               <ul>
-              <li class="date-time">DATE AND TIME</li>
-              <li class="high-temp">HIGH TEMP</li>
-              <li class="low-temp">LOW TEMP</li>
+              <li class="date">Tuesday, Dec. 29</li>
+              <li class="time"> 6:30 PM</li>
               </ul>
             </div>
             </div>
@@ -90,8 +91,8 @@
                     <h5 class="card-text" id="day-6-temp">TEMP HIGH° / TEMP LOW°</h5>  
                     </div>
                   </div>
+              </div>
             </div>
-          </div>
           </div> 
         </div>
         <p>Open-source code by <a href="https://github.com/animalise/Do-I-Need-A-Jacket-Project" target="blank">Analise Rios</a></p>
