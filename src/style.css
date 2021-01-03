@@ -43,7 +43,8 @@ h2 {
 }
 
 .card-text {
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: bolder;
 }
 
 .card-header {
@@ -58,21 +59,19 @@ h2 {
 .fa-sun {
   color: #f0a400;
   font-size: 60px;
+  margin-bottom: 20px;
 }
 
 .fa-cloud-rain {
   font-size: 60px;
   color: #158596;
+  margin-bottom: 20px;
 }
 
-.fa-cloud-sun {
+.fa-cloud-sun, .fa-cloud {
   font-size: 60px;
   color:rgb(203, 175, 135);
-}
-
-.fa-cloud {
-  font-size: 60px;
-  color: rgb(203, 175, 135);
+  margin-bottom: 20px;
 }
 
 #currentButton {
@@ -83,6 +82,10 @@ h2 {
 
 .current-temp {
   font-size: 40px;
+}
+
+.jacket {
+  font-size: 18px;
 }
 
 .units {
