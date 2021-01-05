@@ -58,13 +58,19 @@ function displayTemperature(response) {
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
   dateElement.innerHTML = formatDate(response.data.dt * 1000); 
-  currentIconElement.setAttribute("id", displayIcon(response.data.weather[0].icon)); 
-  
-  if (response.data.main.temp < 50) {
+  currentIconElement.setAttribute("class", displayIcon(response.data.weather[0].icon));
+  currentIconElement.setAttribute("style", "font-size: 100px;"); 
+
+  if (response.data.main.temp < 60) {
     jacketElement.innerHTML = "bring a jacket!" 
   } else {
     jacketElement.innerHTML = "no jacket!"
   }
+  if (response.data.weather[0].main === "Rain" || response.data.weather[0].main === "Drizzle" || response.data.weather[0].main === "Thunderstorm") {
+    jacketElement.innerHTML = "don't forget your umbrella!"
+  }
+
+  console.log(response.data);
 }
 
 function displayIcon(iconValue) {
@@ -93,13 +99,21 @@ if (iconValue === "13d" || "13n") {
 }
 }
 
-let apiKey = "af173d370d3263e90c511e8cd78a494a";
-let city = "Seoul"
-let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+
+function search(city) {
+  let apiKey = "af173d370d3263e90c511e8cd78a494a";
+  let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let searchInputElement = document.querySelector("#searchInput");
+  search(searchInputElement.value);
+}
 
 
+let form = document.querySelector("#search-form"); 
+form.addEventListener("submit", handleSubmit);
 
-
-axios.get(apiUrl).then(displayTemperature);
-axios.get(apiUrl).then(displayIcon);
-
+search("New York");
