@@ -95,6 +95,15 @@ h2 {
   top: -14px;
 }
 
+.units .active {
+  color: black;
+  cursor: default;
+}
+
+.units .active:hover {
+  text-decoration: none;
+}
+
 .date, .time {
   font-size: 20px;
   text-align: center;

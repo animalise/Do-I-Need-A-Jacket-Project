@@ -1,3 +1,5 @@
+// specify date and time 
+
 function formatDate(timestamp){
 
   let date = new Date(timestamp);
@@ -46,6 +48,9 @@ function formatDate(timestamp){
 }
 
 
+// specify temperature data 
+
+
 function displayTemperature(response) {
   let temperatureElement = document.querySelector(".current-temp");
   let cityElement = document.querySelector(".city");
@@ -54,7 +59,9 @@ function displayTemperature(response) {
   let jacketElement = document.querySelector(".jacket");
   let currentIconElement = document.querySelector("#icon1");
 
-  temperatureElement.innerHTML = Math.round(response.data.main.temp); 
+  fahrenheitTemperature = response.data.main.temp;
+
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature); 
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
   dateElement.innerHTML = formatDate(response.data.dt * 1000); 
@@ -69,36 +76,48 @@ function displayTemperature(response) {
   if (response.data.weather[0].main === "Rain" || response.data.weather[0].main === "Drizzle" || response.data.weather[0].main === "Thunderstorm") {
     jacketElement.innerHTML = "don't forget your umbrella!"
   }
-
-  console.log(response.data);
 }
+
+// icons 
+
 
 function displayIcon(iconValue) {
-if (iconValue === "01d" || iconValue === "01n") {
-  return "fas fa-sun"
+if (iconValue === "01d" || 
+    iconValue === "01n") {
+    return "fas fa-sun"
 }
 
-if (iconValue === "02d" || iconValue === "02n") {
-  return "fas fa-cloud-sun"
+if (iconValue === "02d" || 
+    iconValue === "02n") {
+    return "fas fa-cloud-sun"
 }
 
-if (iconValue === "03d" || iconValue === "03n" || iconValue === "04d" || iconValue === "04n") {
-  return "fas fa-cloud"
+if (iconValue === "03d" || 
+    iconValue === "03n" || 
+    iconValue === "04d" || 
+    iconValue === "04n") {
+    return "fas fa-cloud"
 }
 
-if (iconValue === "09d" || iconValue === "09n" || iconValue === "10d" || iconValue === "10n") {
-  return "fas fa-cloud-rain"
+if (iconValue === "09d" || 
+    iconValue === "09n" || 
+    iconValue === "10d" || 
+    iconValue === "10n") {
+    return "fas fa-cloud-rain"
 }
 
-if (iconValue === "11d" || iconValue === "11n") {
-  return "fas fa-bolt"
+if (iconValue === "11d" || 
+    iconValue === "11n") {
+    return "fas fa-bolt"
 }
 
-if (iconValue === "13d" || "13n") {
-  return "fas fa-snowflake"
+if (iconValue === "13d" || 
+    iconValue === "13n") {
+    return "fas fa-snowflake"
 }
 }
 
+// search form
 
 function search(city) {
   let apiKey = "af173d370d3263e90c511e8cd78a494a";
@@ -112,8 +131,39 @@ function handleSubmit(event) {
   search(searchInputElement.value);
 }
 
+// temperature units 
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let celsiusTemperature = (fahrenheitTemperature - 32 * 5 / 9);
+  let temperatureElement = document.querySelector(".current-temp")
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+}
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector(".current-temp")
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature); 
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+}
+
+
+
+// global units, existing outside of functions
+
+let fahrenheitTemperature = null;
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let form = document.querySelector("#search-form"); 
 form.addEventListener("submit", handleSubmit);
 
 search("New York");
+
