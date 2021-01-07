@@ -8,6 +8,7 @@ function formatDate(timestamp){
    hours = `0${hours}`;
   }
 
+
   let minutes = date.getMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`; 
@@ -42,7 +43,7 @@ function formatDate(timestamp){
 
   let month = months[date.getMonth()];
 
-  return `${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()} <br  /> ${date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`;
+  return `<small><em> Last updated: </em> </small> ${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()} <br  /> ${date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`;
 }
 
 function forecastHours(timestamp) {
@@ -55,8 +56,7 @@ function forecastHours(timestamp) {
   return `${date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`
 }
 
-// specify temperature data 
-
+// temperature data 
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector(".current-temp");
@@ -87,16 +87,21 @@ function displayTemperature(response) {
 
 // icons 
 
-
 function displayIcon(iconValue) {
-if (iconValue === "01d" || 
-    iconValue === "01n") {
+if (iconValue === "01d") {
     return "fas fa-sun"
 }
 
-if (iconValue === "02d" || 
-    iconValue === "02n") {
+if (iconValue === "01n") {
+    return "fas fa-moon"
+}
+
+if (iconValue === "02d") {
     return "fas fa-cloud-sun"
+}
+
+if (iconValue === "02n") {
+  return "fas fa-cloud-moon"
 }
 
 if (iconValue === "03d" || 
@@ -106,12 +111,15 @@ if (iconValue === "03d" ||
     return "fas fa-cloud"
 }
 
-if (iconValue === "09d" || 
-    iconValue === "09n" || 
-    iconValue === "10d" || 
-    iconValue === "10n") {
+if (iconValue === "09d" ||
+    iconValue === "10d" ) {
     return "fas fa-cloud-rain"
 }
+
+if (iconValue === "09n" ||
+    iconValue === "10n") {
+  return "fas fa-cloud-moon-rain"
+    }
 
 if (iconValue === "11d" || 
     iconValue === "11n") {
@@ -124,7 +132,8 @@ if (iconValue === "13d" ||
 }
 }
 
-// search form
+
+// forecast
 
 function displayForcast(response) {
   let forecastElement = document.querySelector("#weather-forecast");
@@ -142,9 +151,9 @@ function displayForcast(response) {
       </div>
       `;
 }
-
-console.log(response.data);
 }
+
+// search form 
 
 function search(city) {
   let apiKey = "af173d370d3263e90c511e8cd78a494a";
@@ -162,6 +171,19 @@ function handleSubmit(event) {
 }
 
 
+// current location button
+
+function showPosition(position) {
+  let latitude = position.coords.latitude;
+  let longitude  = position.coords.longitude;
+  let apiKey = "af173d370d3263e90c511e8cd78a494a";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
 
 
 // temperature units 
@@ -185,7 +207,7 @@ function displayFahrenheitTemperature(event) {
 
 
 
-// global units, existing outside of functions
+// global units existing outside of functions 
 
 let fahrenheitTemperature = null;
 
@@ -197,6 +219,10 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let form = document.querySelector("#search-form"); 
 form.addEventListener("submit", handleSubmit);
+
+let currentLocationButton = document.querySelector("#currentButton");
+currentLocationButton.addEventListener("click" , getCurrentPosition);
+
 
 search("New York");
 
