@@ -121,3 +121,7 @@ p {
   bottom: -20px;
   right: 10px;
 }
+
+.jacket {
+  font-weight: bold;
+}

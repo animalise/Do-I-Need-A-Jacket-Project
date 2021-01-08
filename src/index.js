@@ -43,7 +43,7 @@ function formatDate(timestamp){
 
   let month = months[date.getMonth()];
 
-  return `<small><em> Last updated: </em> </small> ${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()} <br  /> ${date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`;
+  return `<small><em> Last updated: </em></small><br /> ${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()} <br  /> ${date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`;
 }
 
 function forecastHours(timestamp) {
@@ -53,7 +53,7 @@ function forecastHours(timestamp) {
   if (minutes < 10) { 
     minutes = `0${minutes}`;
   }
-  return `${date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`
+  return `${hours}:${minutes}`
 }
 
 // temperature data 
@@ -80,7 +80,9 @@ function displayTemperature(response) {
   } else {
     jacketElement.innerHTML = "no jacket!"
   }
-  if (response.data.weather[0].main === "Rain" || response.data.weather[0].main === "Drizzle" || response.data.weather[0].main === "Thunderstorm") {
+  if (response.data.weather[0].main === "Rain" || 
+      response.data.weather[0].main === "Drizzle" || 
+      response.data.weather[0].main === "Thunderstorm") {
     jacketElement.innerHTML = "don't forget your umbrella!"
   }
 }
@@ -160,8 +162,8 @@ function search(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayTemperature);
  
-  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
-  axios.get(apiUrl).then(displayForcast);
+  apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
+  axios.get(apiForecastUrl).then(displayForcast);
 }
 
 function handleSubmit(event) {
@@ -224,5 +226,5 @@ let currentLocationButton = document.querySelector("#currentButton");
 currentLocationButton.addEventListener("click" , getCurrentPosition);
 
 
-search("New York");
+search("Amsterdam");
 
