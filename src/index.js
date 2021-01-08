@@ -43,6 +43,7 @@ function formatDate(timestamp){
 
   let month = months[date.getMonth()];
 
+
   return `<small><em> Last updated: </em></small><br /> ${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()} <br  /> ${date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`;
 }
 
@@ -53,7 +54,7 @@ function forecastHours(timestamp) {
   if (minutes < 10) { 
     minutes = `0${minutes}`;
   }
-  return `${hours}:${minutes}`
+  return `${hours}:${minutes}`;
 }
 
 // temperature data 
@@ -132,12 +133,17 @@ if (iconValue === "13d" ||
     iconValue === "13n") {
     return "fas fa-snowflake"
 }
+
+if (iconValue === "50d" ||
+    iconValue === "50n") {
+    return "fas fa-smog"
+}
 }
 
 
 // forecast
 
-function displayForcast(response) {
+function displayForecast(response) {
   let forecastElement = document.querySelector("#weather-forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
@@ -153,6 +159,8 @@ function displayForcast(response) {
       </div>
       `;
 }
+
+console.log(response.data);
 }
 
 // search form 
@@ -161,9 +169,8 @@ function search(city) {
   let apiKey = "af173d370d3263e90c511e8cd78a494a";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayTemperature);
- 
-  apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
-  axios.get(apiForecastUrl).then(displayForcast);
+  let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
+  axios.get(apiForecastUrl).then(displayForecast);
 }
 
 function handleSubmit(event) {
@@ -177,10 +184,12 @@ function handleSubmit(event) {
 
 function showPosition(position) {
   let latitude = position.coords.latitude;
-  let longitude  = position.coords.longitude;
+  let longitude = position.coords.longitude;
   let apiKey = "af173d370d3263e90c511e8cd78a494a";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayTemperature);
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
+  axios.get(apiForecastUrl).then(displayForecast);
 }
 
 function getCurrentPosition() {
