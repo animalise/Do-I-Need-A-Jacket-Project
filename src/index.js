@@ -70,7 +70,7 @@ function displayTemperature(response) {
   fahrenheitTemperature = response.data.main.temp;
 
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-  cityElement.innerHTML = `${response.data.name}, ${response.data.country}`;
+  cityElement.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   descriptionElement.innerHTML = response.data.weather[0].description;
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   currentIconElement.setAttribute("class", displayIcon(response.data.weather[0].icon));
