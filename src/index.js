@@ -70,7 +70,7 @@ function displayTemperature(response) {
   fahrenheitTemperature = response.data.main.temp;
 
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-  cityElement.innerHTML = response.data.name;
+  cityElement.innerHTML = `${response.data.name}, ${response.data.country}`;
   descriptionElement.innerHTML = response.data.weather[0].description;
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   currentIconElement.setAttribute("class", displayIcon(response.data.weather[0].icon));
@@ -81,6 +81,7 @@ function displayTemperature(response) {
   } else {
     jacketElement.innerHTML = "no jacket!"
   }
+
   if (response.data.weather[0].main === "Rain" ||
     response.data.weather[0].main === "Drizzle" ||
     response.data.weather[0].main === "Thunderstorm") {
